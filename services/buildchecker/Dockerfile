@@ -13,8 +13,10 @@
 #     国内服务器构建时用 --build-arg APT_MIRROR=mirrors.aliyun.com 覆盖。
 #   以上只影响下载路径，不改变镜像内容。
 ARG BASE_IMAGE=python:3.13-slim@sha256:f82c96458eedc847b233e582eb31336f4954b39cae020b6dcf5b3ed0e5cbcd74
-ARG APT_MIRROR=deb.debian.org
 FROM ${BASE_IMAGE}
+
+# ARG 必须声明在 FROM 之后，才能在构建阶段内使用
+ARG APT_MIRROR=deb.debian.org
 
 ENV LC_ALL=C.UTF-8 \
     TZ=UTC \
